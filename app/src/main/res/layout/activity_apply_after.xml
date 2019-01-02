@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.ApplyAfterActivity.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.ApplyAfterActivity">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.jinxun.hunting_goods.weight.NavigationTopBar
+                    android:id="@+id/apply_after_top_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+
+                <RelativeLayout
+                    android:id="@+id/after_message_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y73">
+
+                    <TextView
+                        android:id="@+id/after_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <ImageView
+                        android:id="@+id/after_message_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/x40"
+                        android:onClick="@{presenter.onClick}" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/indent_num_root"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y22"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/indent_num_text"
+                        android:textSize="@dimen/x26" />
+
+                    <TextView
+                        android:id="@+id/indent_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1300000000"
+                        android:textSize="@dimen/x26" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/indent_info_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y200"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y24"
+                    android:background="@color/white_fa">
+
+                    <ImageView
+                        android:id="@+id/indent_info_image"
+                        android:layout_width="@dimen/x200"
+                        android:layout_height="@dimen/y200" />
+
+                    <TextView
+                        android:id="@+id/indent_info_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y24"
+                        android:layout_toEndOf="@+id/indent_info_image"
+                        android:text="@string/app_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x38"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/indent_info_texture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/indent_info_name"
+                        android:layout_marginTop="@dimen/y10"
+                        android:layout_toEndOf="@+id/indent_info_image"
+                        android:text="黑色鳄鱼皮全身定制"
+                        android:textSize="@dimen/x24" />
+
+                    <TextView
+                        android:id="@+id/indent_info_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignStart="@+id/indent_info_texture"
+                        android:text="1334"
+                        android:textColor="@color/red_cc"
+                        android:textSize="@dimen/x36"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y38"
+                    android:text="@string/apply_after_title"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y344"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y24"
+                    android:background="@drawable/bg_edit_sms_right">
+
+                    <EditText
+                        android:id="@+id/apply_after_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/x24"
+                        android:background="@null"
+                        android:hint="@string/apply_after_info"
+                        android:textSize="@dimen/x20" />
+
+                    <TextView
+                        android:id="@+id/apply_after_edit_text_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/apply_after_edit_text"
+                        android:layout_marginEnd="@dimen/x22"
+                        android:layout_marginTop="@dimen/y24"
+                        android:text="0/300"
+                        android:textSize="@dimen/x24" />
+
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y2"
+                        android:layout_below="@+id/apply_after_edit_text_size"
+                        android:layout_margin="@dimen/x24"
+                        android:background="@color/line_e6" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/line"
+                        android:layout_marginTop="@dimen/y20">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y10"
+                    android:layout_marginTop="@dimen/y58"
+                    android:background="@color/line_e6"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/recipients_info_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y44">
+
+                    <TextView
+                        android:id="@+id/recipients_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x38"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/recipients_phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/x58"
+                        android:layout_toEndOf="@+id/recipients_name"
+                        android:text="13000000000"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x38"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/pick_up_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/recipients_name"
+                        android:layout_marginTop="@dimen/y20"
+                        android:src="@mipmap/pick_up_icon" />
+
+
+                    <TextView
+                        android:id="@+id/pick_up_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/recipients_phone_number"
+                        android:layout_marginStart="@dimen/x24"
+                        android:layout_marginTop="@dimen/y24"
+                        android:layout_toEndOf="@+id/pick_up_name"
+                        android:text="上海市徐汇区 淞虹路痛惜小区1223号 "
+                        android:textSize="@dimen/x24" />
+
+                    <ImageView
+                        android:id="@+id/delivery_address_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pick_up_name"
+                        android:layout_marginTop="@dimen/y20"
+                        android:src="@mipmap/delivery_address_icon" />
+
+                    <TextView
+                        android:id="@+id/delivery_address_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pick_up_address"
+                        android:layout_marginStart="@dimen/x24"
+                        android:layout_marginTop="@dimen/y24"
+                        android:layout_toEndOf="@+id/delivery_address_icon"
+                        android:text="@string/default_fetch_address"
+                        android:textSize="@dimen/x24" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/y30"
+                        android:src="@mipmap/into_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/pick_up_address"
+                        android:layout_marginTop="@dimen/y16"
+                        android:background="@mipmap/substitute_bg"
+                        android:gravity="center"
+                        android:text="@string/substitute"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/x20" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/appointment_time_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y58"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y40"
+                    android:background="@color/white_ef">
+
+                    <ImageView
+                        android:id="@+id/time_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/x20"
+                        android:src="@mipmap/time_icon" />
+
+                    <TextView
+                        android:id="@+id/appointment_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/x20"
+                        android:layout_toEndOf="@+id/time_icon"
+                        android:text="预约取件时间（两小时内）"
+                        android:textSize="@dimen/x24" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/x40"
+                        android:src="@mipmap/item_open_icon" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/appointment_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y120"
+                    android:layout_marginBottom="@dimen/y74"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x44"
+                    android:layout_marginTop="@dimen/y100"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:text="@string/appointment_expressage"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x36" />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+</layout>

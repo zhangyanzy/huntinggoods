@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="@dimen/x508"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/x120"
+        android:layout_marginStart="@dimen/x120"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/toast_image"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y150"
+                android:src="@mipmap/pay_success" />
+
+            <TextView
+                android:id="@+id/toast_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/x2"
+                android:text="提交成功"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/toast_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/root"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/y68"
+            android:layout_marginTop="@dimen/y20"
+            android:orientation="vertical"
+            android:text="您的意见对我们十分珍贵"
+            android:textSize="@dimen/x24" />
+    </RelativeLayout>
+</layout>

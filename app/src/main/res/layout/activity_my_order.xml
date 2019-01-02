@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.MyOrderActivity.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.MyOrderActivity">
+
+        <com.jinxun.hunting_goods.weight.NavigationTopBar
+            android:id="@+id/my_order_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96">
+
+        </com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/my_order_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y104"
+            android:layout_below="@+id/my_order_top_bar"
+            app:tabIndicatorHeight="@dimen/y8"
+            app:tabPaddingTop="@dimen/y20"
+            app:tabSelectedTextColor="@color/black_34"
+            app:tabTextColor="@color/silver"
+            app:tabIndicatorColor="@color/black"
+            />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y10"
+            android:layout_below="@+id/my_order_tab_layout"
+            android:background="@color/line_e6" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/my_order_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"></android.support.v4.view.ViewPager>
+    </RelativeLayout>
+</layout>

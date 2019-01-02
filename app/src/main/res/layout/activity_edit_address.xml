@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.EditAddressActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.EditAddressActivity">
+
+
+        <com.jinxun.hunting_goods.weight.NavigationTopBar
+            android:id="@+id/edit_address_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y44"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y86"
+                android:background="@drawable/bg_edit_sms_right"
+                android:hint="@string/name"
+                android:textCursorDrawable="@drawable/edit_text_bg"
+                android:paddingStart="@dimen/x28"
+                android:textSize="@dimen/x26" />
+
+            <EditText
+                android:id="@+id/num_edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y86"
+                android:layout_marginTop="@dimen/y30"
+                android:background="@drawable/bg_edit_sms_right"
+                android:hint="@string/phone"
+                android:textCursorDrawable="@drawable/edit_text_bg"
+                android:paddingStart="@dimen/x28"
+                android:textSize="@dimen/x26" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/province_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y86"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_sms_right"
+                    android:gravity="center_vertical"
+                    android:onClick="@{presenter.onClick}"
+                    android:paddingStart="@dimen/x26"
+                    android:text="@string/province"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x26"
+                    />
+
+                <TextView
+                    android:id="@+id/city_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y86"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_sms_right"
+                    android:gravity="center_vertical"
+                    android:onClick="@{presenter.onClick}"
+                    android:paddingStart="@dimen/x26"
+                    android:text="@string/city"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x26" />
+
+                <TextView
+                    android:id="@+id/area_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y86"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_sms_right"
+                    android:gravity="center_vertical"
+                    android:onClick="@{presenter.onClick}"
+                    android:paddingStart="@dimen/x26"
+                    android:text="@string/area"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x26" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/address_info_edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y86"
+                android:layout_marginTop="@dimen/y30"
+                android:background="@drawable/bg_edit_sms_right"
+                android:hint="@string/address_info"
+                android:paddingStart="@dimen/x28"
+                android:textCursorDrawable="@drawable/edit_text_bg"
+                android:textSize="@dimen/x26" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y44">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/set_default"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x28" />
+
+                <CheckBox
+                    android:id="@+id/set_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/set_default_bg"
+                    android:button="@null"
+                    android:checked="false" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/save_address_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y88"
+                android:layout_marginTop="@dimen/y86"
+                android:background="@color/black"
+                android:gravity="center"
+                android:onClick="@{presenter.onClick}"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x28" />
+
+            <TextView
+                android:id="@+id/delete_address_btn"
+                android:layout_width="match_parent"
+                android:onClick="@{presenter.onClick}"
+                android:layout_height="@dimen/y88"
+                android:layout_marginTop="@dimen/y40"
+                android:background="@drawable/bg_edit_sms_right"
+                android:gravity="center"
+                android:text="@string/delete_address"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x28"
+                android:visibility="gone"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

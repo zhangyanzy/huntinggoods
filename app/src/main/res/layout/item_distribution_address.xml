@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x44"
+        android:layout_marginStart="@dimen/x44">
+
+        <CheckBox
+            android:id="@+id/item_set_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/set_distribution_address_bg"
+            android:button="@null"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_toEndOf="@+id/item_set_address"
+            android:text="@string/name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x38"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x40"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_toEndOf="@+id/item_name"
+            android:text="@string/phone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x38"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_isDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_toEndOf="@+id/item_num"
+            android:background="@color/BLUE_00AACC"
+            android:paddingBottom="@dimen/y10"
+            android:paddingEnd="@dimen/x20"
+            android:paddingStart="@dimen/x20"
+            android:paddingTop="@dimen/y10"
+            android:text="@string/default_tv"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x20"
+            android:visibility="gone"
+            />
+
+
+        <TextView
+            android:id="@+id/item_address_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_name"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/y26"
+            android:layout_toEndOf="@+id/item_set_address"
+            android:text="@string/address_info"
+            android:textColor="@color/silver"
+            android:textSize="@dimen/x24" />
+
+        <TextView
+            android:id="@+id/item_compile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/item_name"
+            android:text="@string/compile"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:layout_below="@+id/item_compile"
+            android:layout_marginTop="@dimen/y40"
+            android:background="@color/black"
+            android:backgroundTint="@color/line_e6" />
+
+    </RelativeLayout>
+</layout>

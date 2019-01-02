@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_shopping_trolley"
+        android:orderInCategory="100"
+        android:title="@string/my_shopping_trolley"
+        android:icon="@mipmap/item_open_icon"
+        />
+
+</menu>

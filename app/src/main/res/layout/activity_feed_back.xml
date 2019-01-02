@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.FeedBackActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.FeedBackActivity">
+
+        <com.jinxun.hunting_goods.weight.NavigationTopBar
+            android:id="@+id/feed_back_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+
+        <EditText
+            android:id="@+id/feed_back_edit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y422"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y20"
+            android:background="@drawable/bg_edit_sms_right"
+            android:gravity="center_horizontal"
+            android:hint="@string/feed_back_message"
+            android:paddingTop="@dimen/y30"
+            android:textSize="@dimen/x24"
+            android:textCursorDrawable="@drawable/edit_text_bg"
+            />
+
+        <TextView
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y88"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y88"
+            android:background="@color/black"
+            android:gravity="center"
+            android:onClick="@{presenter.onClick}"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x28" />
+    </LinearLayout>
+</layout>

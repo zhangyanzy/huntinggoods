@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/item_indent_info_root"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y200"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y24"
+            android:background="@color/white_fa">
+
+            <ImageView
+                android:id="@+id/item_indent_info_image"
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y200" />
+
+            <TextView
+                android:id="@+id/item_indent_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y24"
+                android:layout_marginStart="@dimen/x16"
+                android:layout_toEndOf="@+id/item_indent_info_image"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x38" />
+
+            <TextView
+                android:id="@+id/item_indent_info"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/x16"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_indent_info_name"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_toEndOf="@+id/item_indent_info_image"
+                android:textSize="@dimen/x24" />
+
+            <TextView
+                android:id="@+id/item_order_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/x20"
+                android:layout_marginTop="@dimen/y20"
+                android:textColor="@color/BLUE_00AACC"
+                android:textSize="@dimen/x24" />
+
+            <TextView
+                android:id="@+id/item_order_money_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_indent_info"
+                android:layout_marginTop="@dimen/y24"
+                android:layout_marginStart="@dimen/x16"
+                android:layout_toEndOf="@+id/item_indent_info_image"
+                android:text="¥"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/item_order_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_indent_info"
+                android:layout_marginTop="@dimen/y14"
+                android:layout_toEndOf="@+id/item_order_money_icon"
+                android:text="1334"
+                android:textColor="@color/red"
+                android:textSize="@dimen/x40" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y10"
+            android:layout_below="@+id/item_indent_info_root"
+            android:layout_marginTop="@dimen/y30"
+            android:background="@color/line_e6" />
+
+    </RelativeLayout>
+</layout>

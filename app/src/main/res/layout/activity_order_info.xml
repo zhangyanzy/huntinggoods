@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.OrderInfoActivity.Presenter" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.OrderInfoActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.jinxun.hunting_goods.weight.NavigationTopBar
+                android:id="@+id/order_info_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y170"
+                android:background="@color/black_222731">
+
+                <TextView
+                    android:id="@+id/order_info_states"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x47"
+                    android:layout_marginTop="@dimen/y40"
+                    android:text="待付款"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x36"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/order_info_states_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_info_states"
+                    android:layout_marginStart="@dimen/x47"
+                    android:layout_marginTop="@dimen/y12"
+                    android:text="请尽快完成付款"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x24" />
+
+                <ImageView
+                    android:id="@+id/order_info_states_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/x54"
+                    android:src="@mipmap/wait_sending" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/flow_root"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/y52"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/shoe_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/basics_shoe"
+                    android:textColor="@color/black_34" />
+
+                <View
+                    android:layout_width="@dimen/x120"
+                    android:layout_height="@dimen/x4"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/x10"
+                    android:background="@color/black_34" />
+
+                <TextView
+                    android:id="@+id/crafts_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x10"
+                    android:text="@string/craftsman"
+                    android:textColor="@color/black_34" />
+
+                <View
+                    android:layout_width="@dimen/x120"
+                    android:layout_height="@dimen/x4"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/x10"
+                    android:background="@color/black_34" />
+
+                <TextView
+                    android:id="@+id/effect_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x10"
+                    android:text="@string/effect_picture"
+                    android:textColor="@color/black_34" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/image_root"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y114"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y30">
+
+                <ImageView
+                    android:id="@+id/shoe_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/white_shoe" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/crafts_man_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/crafts_man_icon" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y28"
+                        android:layout_alignParentBottom="true"
+                        android:background="@mipmap/pickup_time_bg">
+
+                        <ImageView
+                            android:id="@+id/small_time_icom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/x20"
+                            android:src="@mipmap/small_item_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_toEndOf="@+id/small_time_icom"
+                            android:text="加工时长30天"
+                            android:textSize="@dimen/x18" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/effect_picture_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/effect_picture" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/recipients_info_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y80">
+
+                <TextView
+                    android:id="@+id/recipients_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/recipients_phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x58"
+                    android:layout_toEndOf="@+id/recipients_name"
+                    android:text="13000000000"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/pick_up_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recipients_name"
+                    android:layout_marginTop="@dimen/y20"
+                    android:src="@mipmap/pick_up_icon" />
+
+
+                <TextView
+                    android:id="@+id/pick_up_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recipients_phone_number"
+                    android:layout_marginStart="@dimen/x24"
+                    android:layout_marginTop="@dimen/y17"
+                    android:layout_toEndOf="@+id/pick_up_name"
+                    android:textSize="@dimen/x24"
+                    android:onClick="@{presenter.onClick}"
+                    />
+
+                <ImageView
+                    android:id="@+id/delivery_address_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pick_up_name"
+                    android:layout_marginTop="@dimen/y20"
+                    android:src="@mipmap/delivery_address_icon" />
+
+                <TextView
+                    android:id="@+id/delivery_address_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pick_up_address"
+                    android:layout_marginStart="@dimen/x24"
+                    android:layout_marginTop="@dimen/y17"
+                    android:layout_toEndOf="@+id/delivery_address_icon"
+                    android:text="@string/default_fetch_address"
+                    android:onClick="@{presenter.onClick}"
+                    android:textSize="@dimen/x24" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/y30"
+                    android:src="@mipmap/into_icon" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/appointment_time_root"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y58"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y40"
+                android:background="@color/white_f7"
+                android:visibility="gone"
+                android:onClick="@{presenter.onClick}"
+                >
+
+                <ImageView
+                    android:id="@+id/time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:src="@mipmap/time_icon" />
+
+                <TextView
+                    android:id="@+id/appointment_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_toEndOf="@+id/time_icon"
+                    android:text="@string/appointment_time"
+                    android:textSize="@dimen/x24" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/x40"
+                    android:src="@mipmap/item_open_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/indent_info_root"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y200"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y24"
+                android:background="@color/white_fa">
+
+                <ImageView
+                    android:id="@+id/indent_info_image"
+                    android:layout_width="@dimen/x200"
+                    android:layout_height="@dimen/y200" />
+
+                <TextView
+                    android:id="@+id/indent_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y24"
+                    android:layout_toEndOf="@+id/indent_info_image"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/indent_info_texture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/indent_info_name"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_toEndOf="@+id/indent_info_image"
+                    android:textSize="@dimen/x24" />
+
+                <TextView
+                    android:id="@+id/indent_info_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/indent_info_texture"
+                    android:layout_marginBottom="@dimen/y30"
+                    android:textColor="@color/red_cc"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y18"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_num"
+                    android:textSize="@dimen/x24" />
+
+                <TextView
+                    android:id="@+id/order_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y18"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/place_order"
+                    android:textSize="@dimen/x24" />
+
+                <TextView
+                    android:id="@+id/order_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_info_bottom_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y125"
+                android:layout_marginTop="@dimen/y34"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/cancel_order_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/cancel_order"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x28" />
+
+                <TextView
+                    android:id="@+id/continue_pay_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:text="@string/continue_pay"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x38" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

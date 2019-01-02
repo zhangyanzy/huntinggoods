@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.ShoppingCarActivity.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.ShoppingCarActivity">
+
+        <com.jinxun.hunting_goods.weight.NavigationTopBar
+            android:id="@+id/shopping_car_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shopping_car_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/shopping_car_root"
+            android:layout_below="@+id/shopping_car_top_bar"></android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:id="@+id/shopping_car_root"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y125"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/all_choose_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x26"
+                    android:background="@drawable/set_distribution_address_bg"
+                    android:button="@null"
+                    android:checked="false"
+                    android:onCheckedChanged="@{presenter.onCheckedChanged}" />
+
+                <TextView
+                    android:id="@+id/all_choose_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all_choose"
+                    android:textColor="@color/black_34" />
+
+                <TextView
+                    android:id="@+id/shopping_car_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x10"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pay_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/black"
+                android:gravity="center"
+                android:onClick="@{presenter.onClick}"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/go_to_pay"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:id="@+id/pay_sum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x38"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
