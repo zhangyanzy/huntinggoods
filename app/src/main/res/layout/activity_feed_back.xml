@@ -30,12 +30,12 @@
             android:layout_marginStart="@dimen/x44"
             android:layout_marginTop="@dimen/y20"
             android:background="@drawable/bg_edit_sms_right"
-            android:gravity="center_horizontal"
+            android:gravity="start"
             android:hint="@string/feed_back_message"
+            android:paddingStart="@dimen/x20"
             android:paddingTop="@dimen/y30"
-            android:textSize="@dimen/x24"
             android:textCursorDrawable="@drawable/edit_text_bg"
-            />
+            android:textSize="@dimen/x24" />
 
         <TextView
             android:id="@+id/submit_btn"

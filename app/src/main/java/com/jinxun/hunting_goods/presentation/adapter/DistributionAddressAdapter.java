@@ -34,9 +34,8 @@ public class DistributionAddressAdapter extends BaseRecyclerViewAdapter<AddressE
             @Override
             public void onClick(View v) {
                 item.setChoose(((CheckBox) v).isChecked());
-
                 if (mListener != null)
-                    mListener.onCheck(position, ((CheckBox) v).isChecked(),helper.getAdapterPosition());
+                    mListener.onCheck(position, ((CheckBox) v).isChecked(), helper.getAdapterPosition());
             }
         });
     }
@@ -49,6 +48,6 @@ public class DistributionAddressAdapter extends BaseRecyclerViewAdapter<AddressE
 
     public interface onCheckListener {
 
-        void onCheck(int position, boolean isChecked,int which);
+        void onCheck(int position, boolean isChecked, int which);
     }
 }

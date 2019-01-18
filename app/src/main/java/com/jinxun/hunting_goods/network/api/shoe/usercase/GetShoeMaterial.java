@@ -12,13 +12,15 @@ import rx.Observable;
 public class GetShoeMaterial extends BaseUseCase<ShoeServiceApi> {
 
     private String positionId;
+    private String token;
 
-    public GetShoeMaterial(String positionId) {
+    public GetShoeMaterial(String positionId, String token) {
         this.positionId = positionId;
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().getShoeMaterial(positionId);
+        return createConnection().getShoeMaterial(token,positionId);
     }
 }

@@ -22,7 +22,9 @@ import com.jinxun.hunting_goods.network.bean.Response;
 import com.jinxun.hunting_goods.network.bean.address.AddAddressRequest;
 import com.jinxun.hunting_goods.network.bean.address.AddressEntity;
 import com.jinxun.hunting_goods.network.bean.address.ProvinceEntity;
+import com.jinxun.hunting_goods.util.Constants;
 import com.jinxun.hunting_goods.util.IsEmpty;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 import com.wcong.validator.ValidateResultCall;
@@ -51,6 +53,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
     private Long cityCode;
     private Long areaCode;
     private String id;
+    private String token;
 
     private boolean isChange = false;
 
@@ -63,6 +66,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         if (null == id) { //新建地址
@@ -78,7 +82,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
 
 
     private void getAddressById() {
-        new GetAddressById(id).execute(new HttpSubscriber<AddressEntity>(EditAddressActivity.this) {
+        new GetAddressById(id, token).execute(new HttpSubscriber<AddressEntity>(EditAddressActivity.this) {
             @Override
             public void onSuccess(Response<AddressEntity> response) {
                 AddressEntity entity = response.getData();
@@ -163,7 +167,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
 
 
     private void deleteAddress() {
-        new DeleteAddress(id).execute(new HttpSubscriber<Response>(EditAddressActivity.this) {
+        new DeleteAddress(id, token).execute(new HttpSubscriber<Response>(EditAddressActivity.this) {
             @Override
             public void onSuccess(Response<Response> response) {
                 ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
@@ -191,7 +195,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
 
     private void createAddress() {
         mRequest = new AddAddressRequest();
-        mRequest.setUserId(88l);
+        mRequest.setToken(token);
         mRequest.setName(binding.nameEdit.getText().toString().trim());
         mRequest.setPhone(binding.numEdit.getText().toString().trim());
         mRequest.setProvince(binding.provinceTv.getText().toString().trim());
@@ -214,13 +218,14 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
      * @param request
      */
     private void postAddress(AddAddressRequest request) {
-        new PostAddress(request.getUserId(), request.getName(), request.getPhone(), request.getProvince(),
+        new PostAddress(request.getToken(), request.getName(), request.getPhone(), request.getProvince(),
                 request.getProvinceCode(), request.getCity(), request.getCityCode(), request.getDistrict(),
                 request.getDistrictCode(), request.getAddress(), request.getIsDefault()
         ).execute(new HttpSubscriber<Response>(EditAddressActivity.this) {
             @Override
             public void onSuccess(Response<Response> response) {
                 ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
+                finish();
             }
 
             @Override
@@ -237,12 +242,13 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
      */
     private void changeAddress(AddAddressRequest request) {
         Long uuid = Long.valueOf(this.id);
-        new ChangeAddress(uuid, request.getUserId(), request.getName(), request.getPhone(), request.getProvince(),
+        new ChangeAddress(uuid, request.getToken(), request.getName(), request.getPhone(), request.getProvince(),
                 request.getProvinceCode(), request.getCity(), request.getCityCode(), request.getDistrict(),
                 request.getDistrictCode(), request.getAddress(), request.getIsDefault()).execute(new HttpSubscriber<Response>(EditAddressActivity.this) {
             @Override
             public void onSuccess(Response<Response> response) {
                 ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
+                finish();
             }
 
             @Override
@@ -331,6 +337,7 @@ public class EditAddressActivity extends BaseActivity implements NavigationTopBa
                                 }
                             }
                         }
+
                         @Override
                         public void onFailure(TextView view, String message) {
                             ToastUtil.showShortToast(getApplicationContext(), message);

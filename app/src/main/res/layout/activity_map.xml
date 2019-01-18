@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.MapActivity.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.MapActivity">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <com.amap.api.maps2d.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.amap.api.maps2d.MapView>
+
+            <RelativeLayout
+                android:id="@+id/map_top_root"
+                android:layout_width="@dimen/x662"
+                android:layout_height="@dimen/y188"
+                android:layout_marginEnd="@dimen/x44"
+                android:layout_marginStart="@dimen/x44"
+                android:layout_marginTop="@dimen/y48"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/starting_place_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x84"
+                    android:layout_marginTop="@dimen/y24"
+                    android:text="起始地"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:id="@+id/starting_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/starting_place_title"
+                    android:layout_marginStart="@dimen/x84"
+                    android:layout_marginTop="@dimen/y24"
+                    android:text="浙江"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x36" />
+
+
+                <TextView
+                    android:id="@+id/arrive_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/x96"
+                    android:layout_marginStart="@dimen/x96"
+                    android:layout_marginTop="@dimen/y52"
+                    android:layout_toEndOf="@+id/starting_place_title"
+                    android:text="预计明天送到"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x20" />
+
+
+                <ImageView
+                    android:id="@+id/arrive_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/arrive_time"
+                    android:layout_marginStart="@dimen/x69"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_toEndOf="@+id/starting_place_title"
+                    android:src="@mipmap/sf_indicator" />
+
+
+                <TextView
+                    android:id="@+id/destination_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/x84"
+                    android:layout_marginTop="@dimen/y24"
+                    android:text="目的地"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x20" />
+
+
+                <TextView
+                    android:id="@+id/destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/destination_title"
+                    android:layout_marginEnd="@dimen/x84"
+                    android:layout_marginTop="@dimen/y24"
+                    android:text="上海"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x36"
+
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y55"
+                    android:layout_alignParentBottom="true"
+                    android:background="#e6e6e6">
+
+
+                    <ImageView
+                        android:id="@+id/sf_icon"
+                        android:layout_width="@dimen/x32"
+                        android:layout_height="@dimen/y32"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/x141"
+                        android:src="@mipmap/sf_icon" />
+
+
+                    <TextView
+                        android:id="@+id/sf_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/x16"
+                        android:layout_toEndOf="@+id/sf_icon"
+                        android:text="顺丰快递:  "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x24" />
+
+
+                    <TextView
+                        android:id="@+id/sf_order_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/sf_name"
+                        android:text="000000000000000"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x24" />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/map_bottom_root"
+                android:layout_width="@dimen/x622"
+                android:layout_height="@dimen/y240"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/y40"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/post_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x40"
+                    android:layout_marginTop="@dimen/y32"
+                    android:src="@mipmap/post_icon" />
+
+                <TextView
+                    android:id="@+id/post_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x10"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_toEndOf="@+id/post_icon"
+                    android:text="张大大"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/x28"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/post_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x10"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_toEndOf="@+id/post_name"
+                    android:text="13000000000"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/post_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/post_icon"
+                    android:layout_marginStart="@dimen/x88"
+                    android:layout_marginTop="@dimen/y10"
+                    android:text="上海市徐汇区"
+                    android:textColor="@color/silver"
+                    android:textSize="@dimen/x28" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/x44"
+                    android:layout_marginStart="@dimen/x88"
+                    android:background="@color/line_e6" />
+
+                <ImageView
+                    android:id="@+id/harvest_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/harvest_name"
+                    android:layout_marginStart="@dimen/x44"
+                    android:src="@mipmap/harvest_icon" />
+
+                <TextView
+                    android:id="@+id/harvest_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view"
+                    android:layout_marginStart="@dimen/x16"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_toEndOf="@+id/harvest_icon"
+                    android:text="张大大"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/harvest_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_toEndOf="@+id/harvest_name"
+                    android:text="13000000000"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/harvest_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/harvest_name"
+                    android:layout_marginStart="@dimen/x88"
+                    android:layout_marginTop="@dimen/y10"
+                    android:text="上海市徐汇区"
+                    android:textSize="@dimen/x24" />
+            </RelativeLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+</layout>

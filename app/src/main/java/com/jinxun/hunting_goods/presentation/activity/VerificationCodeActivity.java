@@ -15,6 +15,7 @@ import com.jinxun.hunting_goods.databinding.ActivityVerificationCodeBinding;
 import com.jinxun.hunting_goods.manager.ShortcutMgr;
 import com.jinxun.hunting_goods.network.HttpSubscriber;
 import com.jinxun.hunting_goods.network.api.account.usercase.GetAccountCase;
+import com.jinxun.hunting_goods.network.api.account.usercase.GetCodeCase;
 import com.jinxun.hunting_goods.network.bean.Response;
 import com.jinxun.hunting_goods.network.bean.auth.User;
 import com.jinxun.hunting_goods.util.ToastUtil;
@@ -29,7 +30,7 @@ public class VerificationCodeActivity extends BaseActivity implements Navigation
 
     private ActivityVerificationCodeBinding binding;
     private String mPhoneNumber;
-
+    private String mCode;
     private CountDownTimer timer = new CountDownTimer(30000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
@@ -55,6 +56,27 @@ public class VerificationCodeActivity extends BaseActivity implements Navigation
     @Override
     protected void loadData(Bundle savedInstanceState) {
         getCodeAgain();
+//        getCode();
+    }
+
+
+    private void getCode() {
+        new GetCodeCase(mPhoneNumber).execute(new HttpSubscriber() {
+            @Override
+            public void onSuccess(Response response) {
+
+            }
+
+            @Override
+            public void onFailure(String errorMsg, Response response) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        });
     }
 
     @Override
@@ -88,7 +110,6 @@ public class VerificationCodeActivity extends BaseActivity implements Navigation
         });
     }
 
-
     @Override
     public void leftImageClick() {
         finish();
@@ -113,6 +134,7 @@ public class VerificationCodeActivity extends BaseActivity implements Navigation
     private void getCodeAgain() {
         binding.againGetCode.setEnabled(false);
         timer.start();
+        getCode();
     }
 
     public class Presenter {

@@ -13,14 +13,17 @@ public class GetShoeColors extends BaseUseCase<ShoeServiceApi> {
 
     private Long positionId;
     private Long materialId;
+    private String token;
 
-    public GetShoeColors(Long positionId, Long materialId) {
+    public GetShoeColors(Long positionId, Long materialId, String token) {
         this.positionId = positionId;
         this.materialId = materialId;
+        this.token = token;
     }
+
 
     @Override
     protected Observable buildCase() {
-        return createConnection().getShoeColors(positionId, materialId);
+        return createConnection().getShoeColors(token,positionId, materialId);
     }
 }

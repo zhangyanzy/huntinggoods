@@ -6,7 +6,7 @@ package com.jinxun.hunting_goods.network.bean.address;
  */
 
 public class AddAddressRequest {
-    private Long userId;
+    private String token;
     private String name;
     private String phone;
     private String province;
@@ -18,13 +18,12 @@ public class AddAddressRequest {
     private String address;
     private Integer isDefault;//是否默认地址 0否 1是
 
-
-    public Long getUserId() {
-        return userId;
+    public String getToken() {
+        return token;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getName() {
@@ -110,7 +109,7 @@ public class AddAddressRequest {
     @Override
     public String toString() {
         return "AddAddressRequest{" +
-                "userId=" + userId +
+                "userId=" + token +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", province='" + province + '\'' +

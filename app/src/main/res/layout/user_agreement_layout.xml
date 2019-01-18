@@ -25,15 +25,32 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/x50"
             android:layout_marginTop="@dimen/y50"
-            android:src="@mipmap/close_icon"
-            />
+            android:src="@mipmap/close_icon" />
 
-        <WebView
-            android:id="@+id/user_agreement_web_view"
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/close_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y20"
+            android:text="使用条款"
+            android:textSize="@dimen/x56" />
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/close_btn"
-            android:layout_marginTop="@dimen/y58"></WebView>
+            android:layout_below="@+id/title_text"
+            android:layout_marginTop="@dimen/y40">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_text"
+                android:text="@string/user_agreement_text" />
+
+        </android.support.v4.widget.NestedScrollView>
 
 
     </RelativeLayout>

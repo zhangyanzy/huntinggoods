@@ -8,9 +8,11 @@ import com.jinxun.hunting_goods.R;
 import com.jinxun.hunting_goods.manager.TokenMgr;
 import com.jinxun.hunting_goods.network.exception.ApiException;
 import com.jinxun.hunting_goods.network.exception.TokenExpiredException;
+import com.jinxun.hunting_goods.util.Constants;
 import com.jinxun.hunting_goods.util.GsonUtil;
 import com.jinxun.hunting_goods.util.IsEmpty;
 import com.jinxun.hunting_goods.util.NetworkUtil;
+import com.jinxun.hunting_goods.util.SpUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +34,8 @@ public class ApiClient {
 
     private static Context context;
     private static String baseUrl;
+
+    private static String USER_TOKEN;
 
     private static Gson gson = GsonUtil.getGsonInstance(false);
 
@@ -101,7 +105,7 @@ public class ApiClient {
     public static Retrofit instance(boolean useMock) {//boolean useMock
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
+//        USER_TOKEN = (String) SpUtils.init(Constants.SPREF.FILE_USER_NAME).get(Constants.SPREF.TOKEN, "");
         OkHttpClient okClient = new OkHttpClient.Builder().retryOnConnectionFailure(true)
                 .addInterceptor(logging).addInterceptor(getUserCookie).addInterceptor(setUserCookie)
                 .addInterceptor(requestErrorInterceptor)

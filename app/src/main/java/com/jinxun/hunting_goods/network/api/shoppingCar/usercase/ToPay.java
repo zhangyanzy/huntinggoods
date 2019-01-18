@@ -11,17 +11,17 @@ import rx.Observable;
 
 public class ToPay extends BaseUseCase<ShoppingService> {
 
-    private Long userId;
+    private String token;
     private String[] code;
 
-    public ToPay(Long userId, String[] code) {
-        this.userId = userId;
+    public ToPay(String token, String[] code) {
+        this.token = token;
         this.code = code;
     }
 
 
     @Override
     protected Observable buildCase() {
-        return createConnection().confirmedOrder(userId, code);
+        return createConnection().confirmedOrder(token, code);
     }
 }

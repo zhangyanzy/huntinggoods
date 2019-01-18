@@ -18,14 +18,14 @@ public class ConfirmedOrderEntity implements Serializable {
     private String days;
     private String totalCost;
     private ArrayList<ProductEntity> productList;
-    private AddressEntity addressEntity;
+    private AddressEntity defaultAddress;
 
-    public AddressEntity getAddressEntity() {
-        return addressEntity;
+    public AddressEntity getDefaultAddress() {
+        return defaultAddress;
     }
 
-    public void setAddressEntity(AddressEntity addressEntity) {
-        this.addressEntity = addressEntity;
+    public void setDefaultAddress(AddressEntity defaultAddress) {
+        this.defaultAddress = defaultAddress;
     }
 
     public String getOrderNO() {

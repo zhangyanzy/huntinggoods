@@ -12,13 +12,15 @@ import rx.Observable;
 public class DeleteAddress extends BaseUseCase<AddressServiceApi> {
 
     private String id;
+    private String token;
 
-    public DeleteAddress(String id) {
+    public DeleteAddress(String id, String token) {
         this.id = id;
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().deleteAddress(id);
+        return createConnection().deleteAddress(id, token);
     }
 }

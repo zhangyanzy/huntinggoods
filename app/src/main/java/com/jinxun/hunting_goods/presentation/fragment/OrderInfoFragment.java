@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,23 +12,23 @@ import android.view.ViewGroup;
 
 import com.jinxun.hunting_goods.R;
 import com.jinxun.hunting_goods.base.BaseFragment;
-import com.jinxun.hunting_goods.base.recyclerview.BaseRecyclerViewAdapter;
 import com.jinxun.hunting_goods.databinding.FragmentOrderInfoBinding;
-import com.jinxun.hunting_goods.listener.OnDeleteClickListener;
 import com.jinxun.hunting_goods.listener.OnItemListener;
 import com.jinxun.hunting_goods.network.HttpSubscriber;
+import com.jinxun.hunting_goods.network.api.order.usercase.CancelOrderCase;
 import com.jinxun.hunting_goods.network.api.order.usercase.OrderListCase;
 import com.jinxun.hunting_goods.network.bean.Response;
-import com.jinxun.hunting_goods.network.bean.order.OrderInfoEntity;
 import com.jinxun.hunting_goods.network.bean.order.OrderListEntity;
-import com.jinxun.hunting_goods.presentation.activity.MyOrderActivity;
 import com.jinxun.hunting_goods.presentation.activity.OrderInfoActivity;
-import com.jinxun.hunting_goods.presentation.adapter.OrderInfoAdapter;
 import com.jinxun.hunting_goods.presentation.adapter.OrderListAdapter;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
 
 /**
  * Created by zhangyan on 2018/11/26.
@@ -43,7 +42,7 @@ public class OrderInfoFragment extends BaseFragment {
     private FragmentOrderInfoBinding binding;
     private OrderListAdapter mAdapter;
     private int type;
-
+    private String token;
 
     @Override
     protected View initComponent(LayoutInflater inflater, ViewGroup container) {
@@ -67,7 +66,16 @@ public class OrderInfoFragment extends BaseFragment {
     @Override
     protected void loadData(Bundle savedInstanceState) {
         long type = this.type;
-        getOrderList(88l, type);
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");;
+        getOrderList(token, type);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        long type = this.type;
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");;
+        getOrderList(token, type);
     }
 
     private void initRecycler(final ArrayList<OrderListEntity> lists) {
@@ -88,8 +96,8 @@ public class OrderInfoFragment extends BaseFragment {
     }
 
 
-    private void getOrderList(Long userId, Long orderStatus) {
-        new OrderListCase(userId, orderStatus).execute(new HttpSubscriber<ArrayList<OrderListEntity>>(getContext()) {
+    private void getOrderList(String token, Long orderStatus) {
+        new OrderListCase(token, orderStatus).execute(new HttpSubscriber<ArrayList<OrderListEntity>>(getContext()) {
             @Override
             public void onSuccess(Response<ArrayList<OrderListEntity>> response) {
                 Log.i(TAG, "onSuccess: " + response.getData());
@@ -102,6 +110,7 @@ public class OrderInfoFragment extends BaseFragment {
             }
         });
     }
+
 
 
     public class Presenter {

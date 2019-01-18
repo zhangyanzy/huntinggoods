@@ -11,10 +11,9 @@ import rx.Observable;
 
 public class CompletePart extends BaseUseCase<ShoeServiceApi> {
 
-    private String userId;//用户ID
+    private String token;//用户ID
     private String productId;//产品ID
     private String productName;//产品名称
-
 
 
     private String positionId;//部位ID
@@ -27,9 +26,9 @@ public class CompletePart extends BaseUseCase<ShoeServiceApi> {
     private String colorId;//颜色ID
 
 
-    public CompletePart(String userId, String productId, String positionId, String materialId, String colorId,
+    public CompletePart(String token, String productId, String positionId, String materialId, String colorId,
                         String productName, String positionName, String materialName, String colorName) {
-        this.userId = userId;
+        this.token = token;
         this.productId = productId;
         this.positionId = positionId;
         this.materialId = materialId;
@@ -42,7 +41,7 @@ public class CompletePart extends BaseUseCase<ShoeServiceApi> {
 
     @Override
     protected Observable buildCase() {
-        return createConnection().completePartEdit(userId,productId,positionId,materialId,colorId,productName,
+        return createConnection().completePartEdit(token,productId,positionId,materialId,colorId,productName,
                 positionName,materialName,colorName);
     }
 }

@@ -12,7 +12,7 @@ import rx.Observable;
 
 public class PostAddress extends BaseUseCase<AddressServiceApi> {
 
-    private Long userId;
+    private String token;
     private String name;
     private String phone;
     private String province;
@@ -24,9 +24,9 @@ public class PostAddress extends BaseUseCase<AddressServiceApi> {
     private String address;
     private Integer isDefault;//是否默认地址 0否 1是
 
-    public PostAddress(Long userId, String name, String phone, String province, String provinceCode, String city,
+    public PostAddress(String token, String name, String phone, String province, String provinceCode, String city,
                        String cityCode, String district, String districtCode, String address, Integer isDefault) {
-        this.userId = userId;
+        this.token = token;
         this.name = name;
         this.phone = phone;
         this.province = province;
@@ -41,7 +41,7 @@ public class PostAddress extends BaseUseCase<AddressServiceApi> {
 
     @Override
     protected Observable buildCase() {
-        return createConnection().postAddress(userId, name, phone, province, provinceCode,
+        return createConnection().postAddress(token, name, phone, province, provinceCode,
                 city, cityCode, district, districtCode, address, isDefault);
     }
 }

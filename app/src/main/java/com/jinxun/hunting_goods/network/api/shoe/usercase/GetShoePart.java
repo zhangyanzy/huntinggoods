@@ -11,8 +11,14 @@ import rx.Observable;
 
 public class GetShoePart extends BaseUseCase<ShoeServiceApi> {
 
+    private String token;
+
+    public GetShoePart(String token) {
+        this.token = token;
+    }
+
     @Override
     protected Observable buildCase() {
-        return createConnection().getShoePart();
+        return createConnection().getShoePart(token);
     }
 }

@@ -10,13 +10,16 @@ import com.jinxun.hunting_goods.databinding.ActivityFeedBackBinding;
 import com.jinxun.hunting_goods.network.HttpSubscriber;
 import com.jinxun.hunting_goods.network.api.account.usercase.SendMessage;
 import com.jinxun.hunting_goods.network.bean.Response;
+import com.jinxun.hunting_goods.util.Constants;
 import com.jinxun.hunting_goods.util.OnClickUtil;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 
 public class FeedBackActivity extends BaseActivity implements NavigationTopBar.NavigationTopBarClickListener {
 
     private ActivityFeedBackBinding binding;
+    private String token;
 
     @Override
     protected void initComponent() {
@@ -26,7 +29,7 @@ public class FeedBackActivity extends BaseActivity implements NavigationTopBar.N
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
-
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
     }
 
     @Override
@@ -58,7 +61,7 @@ public class FeedBackActivity extends BaseActivity implements NavigationTopBar.N
     }
 
     private void postMessage(String message) {
-        new SendMessage(message, 88l).execute(new HttpSubscriber<Response>(FeedBackActivity.this) {
+        new SendMessage(message, token).execute(new HttpSubscriber<Response>(FeedBackActivity.this) {
             @Override
             public void onSuccess(Response<Response> response) {
                 ToastUtil.showShortToast(getApplicationContext(), "意见反馈已提交，谢谢");
@@ -85,6 +88,7 @@ public class FeedBackActivity extends BaseActivity implements NavigationTopBar.N
                             postMessage(feedBack);
                         } else {
                             ToastUtil.showShortToast(getApplicationContext(), "意见反馈已提交，谢谢");
+                            finish();
                         }
                     }
                     break;

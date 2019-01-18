@@ -1,6 +1,7 @@
 package com.jinxun.hunting_goods.base;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -17,8 +18,10 @@ import android.widget.Toast;
 import com.jinxun.hunting_goods.R;
 import com.jinxun.hunting_goods.databinding.ActivityBaseBinding;
 import com.jinxun.hunting_goods.presentation.activity.ShoppingCarActivity;
+import com.jinxun.hunting_goods.util.KeyBoardUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.GeneralUtils;
+import com.jph.takephoto.app.TakePhotoActivity;
 import com.ns.yc.ycstatelib.StateLayoutManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -123,6 +126,33 @@ public abstract class BaseActivity extends AppCompatActivity {
             return true;
         }
         return onTouchEvent(ev);
+    }
+
+
+    /**
+     * 监听触摸空白处，隐藏软键盘
+     */
+//    public ViewShoe.OnTouchListener onTouchListener = new View.OnTouchListener() {
+//        @Override
+//        public boolean onTouch(View v, MotionEvent event) {
+//            InputMethodManager manager = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                if (getActivity().getCurrentFocus() != null && getActivity().getCurrentFocus().getWindowToken() != null) {
+//                    manager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+//                }
+//            }
+//            return false;
+//        }
+//    };
+
+
+
+    /**
+     * 管理软键盘的显示
+     */
+    public void manageKeyBord(View view, Activity mActivity) {
+        if (KeyBoardUtils.isKeyBordVisiable(mActivity))
+            KeyBoardUtils.closeKeybord(view, mActivity);
     }
 
 

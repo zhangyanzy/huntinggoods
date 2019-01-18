@@ -4,8 +4,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/root_item_shoe_name"
@@ -17,6 +16,17 @@
             android:textColor="@color/black"
             android:textSize="@dimen/x56"
             android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/root_item_copy_reader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginTop="@dimen/y44"
+            android:src="@mipmap/copyreader_icon"
+            />
 
 
         <android.support.v7.widget.RecyclerView

@@ -15,7 +15,9 @@ import com.jinxun.hunting_goods.databinding.ActivityWelcomeBinding;
 import com.jinxun.hunting_goods.manager.SessionMgr;
 import com.jinxun.hunting_goods.manager.ShortcutMgr;
 import com.jinxun.hunting_goods.manager.TokenMgr;
+import com.jinxun.hunting_goods.util.Constants;
 import com.jinxun.hunting_goods.util.PermissionUtil;
+import com.jinxun.hunting_goods.util.SpUtils;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -23,28 +25,34 @@ public class WelcomeActivity extends BaseActivity {
     private ActivityWelcomeBinding binding;
 
     private String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private String token;
 
 
     @Override
     protected void initComponent() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
         binding.setPresenter(new Presenter());
-        requestWindowFeature(Window.FEATURE_NO_TITLE);// 取消标题栏
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);// 取消标题栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 全屏
-
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 //token过期或者没有登陆就去登陆，否则直接进入直接面
-                if (TokenMgr.isExpired() || SessionMgr.getUser() == null) {
+//                if (TokenMgr.isExpired()) {
+//                    ShortcutMgr.logout();
+//                } else {
+//                    ShortcutMgr.login(SessionMgr.getUser());
+//                }
+                if (token == null) {
                     ShortcutMgr.logout();
                 } else {
                     ShortcutMgr.login(SessionMgr.getUser());
                 }
             }
-        }, 1000);
+        }, 3000);
 
     }
 
@@ -67,7 +75,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        PermissionUtil.check(this,perms,100,getString(R.string.permission_device),getString(R.string.permission_dialog));
+        PermissionUtil.check(this, perms, 100, getString(R.string.permission_device), getString(R.string.permission_dialog));
     }
 
     public class Presenter {

@@ -27,7 +27,7 @@ public class ShoeColorInfoAdapter extends BaseRecyclerViewAdapter<ShoeColorEntit
     @Override
     protected void convert(ShoeColorInfoHolder helper, ShoeColorEntity item, int position) {
         if (null != item) {
-            helper.mName.setText(item.getColorName());
+            helper.mName.setText("PLUM FOG");
             if (item.getImgList().isEmpty())
                 return;
             ArrayList<ShoeColorEntity> list = new ArrayList<>();

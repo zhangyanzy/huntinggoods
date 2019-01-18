@@ -97,7 +97,6 @@ public class TabPageAdapter extends FragmentPagerAdapter {
                 type = 100;
                 break;
         }
-//        return fragments.get(position);
         return OrderInfoFragment.newInstance(type);
     }
 

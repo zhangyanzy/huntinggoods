@@ -24,10 +24,10 @@
         android:layout_marginTop="20dp"
         android:visibility="gone">
 
-        <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@drawable/warning_circle" />&lt;!&ndash;error_circle&ndash;&gt;-->
+        <!--<View&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="@drawable/warning_circle" />&lt;!&ndash;error_circle&ndash;&gt;&ndash;&gt;-->
 
         <ImageView
             android:id="@+id/error_x"

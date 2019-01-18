@@ -11,15 +11,15 @@ import rx.Observable;
 
 public class GetAddress extends BaseUseCase<AddressServiceApi> {
 
-    private Long userId;
+    private String token;
 
 
-    public GetAddress(Long userId) {
-        this.userId = userId;
+    public GetAddress(String token) {
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().getAddress(userId);
+        return createConnection().getAddress(token);
     }
 }

@@ -219,9 +219,8 @@
                     android:layout_marginStart="@dimen/x24"
                     android:layout_marginTop="@dimen/y17"
                     android:layout_toEndOf="@+id/pick_up_name"
-                    android:textSize="@dimen/x24"
                     android:onClick="@{presenter.onClick}"
-                    />
+                    android:textSize="@dimen/x24" />
 
                 <ImageView
                     android:id="@+id/delivery_address_icon"
@@ -239,8 +238,8 @@
                     android:layout_marginStart="@dimen/x24"
                     android:layout_marginTop="@dimen/y17"
                     android:layout_toEndOf="@+id/delivery_address_icon"
-                    android:text="@string/default_fetch_address"
                     android:onClick="@{presenter.onClick}"
+                    android:text="@string/default_fetch_address"
                     android:textSize="@dimen/x24" />
 
                 <ImageView
@@ -249,6 +248,21 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/y30"
                     android:src="@mipmap/into_icon" />
+
+                <TextView
+                    android:id="@+id/substitute_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/pick_up_address"
+                    android:layout_marginEnd="@dimen/x28"
+                    android:layout_marginTop="@dimen/y16"
+                    android:background="@mipmap/substitute_bg"
+                    android:gravity="center"
+                    android:onClick="@{presenter.onClick}"
+                    android:text="@string/substitute"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x20" />
 
 
             </RelativeLayout>
@@ -261,9 +275,8 @@
                 android:layout_marginStart="@dimen/x44"
                 android:layout_marginTop="@dimen/y40"
                 android:background="@color/white_f7"
-                android:visibility="gone"
                 android:onClick="@{presenter.onClick}"
-                >
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/time_icon"
@@ -384,9 +397,7 @@
                 android:id="@+id/order_info_bottom_bg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y125"
-                android:layout_marginTop="@dimen/y34"
-                android:orientation="horizontal"
-                >
+                android:layout_gravity="bottom">
 
                 <TextView
                     android:id="@+id/cancel_order_btn"
@@ -394,6 +405,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="@{presenter.onClick}"
                     android:text="@string/cancel_order"
                     android:textColor="@color/black"
                     android:textSize="@dimen/x28" />
@@ -405,6 +417,7 @@
                     android:layout_weight="2"
                     android:background="@color/black"
                     android:gravity="center"
+                    android:onClick="@{presenter.onClick}"
                     android:text="@string/continue_pay"
                     android:textColor="@color/white"
                     android:textSize="@dimen/x38" />

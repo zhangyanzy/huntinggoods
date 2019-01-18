@@ -12,13 +12,16 @@ import rx.Observable;
 public class OrderDetailCase extends BaseUseCase<OrderService> {
 
     private String orderNO;
+    private String token;
 
-    public OrderDetailCase(String orderNO) {
+
+    public OrderDetailCase(String orderNO, String token) {
         this.orderNO = orderNO;
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().orderDetail(orderNO);
+        return createConnection().orderDetail(token, orderNO);
     }
 }

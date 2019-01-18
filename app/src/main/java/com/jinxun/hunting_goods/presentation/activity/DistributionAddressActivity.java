@@ -16,6 +16,8 @@ import com.jinxun.hunting_goods.network.bean.Response;
 import com.jinxun.hunting_goods.network.bean.address.AddAddressRequest;
 import com.jinxun.hunting_goods.network.bean.address.AddressEntity;
 import com.jinxun.hunting_goods.presentation.adapter.DistributionAddressAdapter;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 import com.jinxun.hunting_goods.weight.pullrefresh.layout.BaseFooterView;
@@ -30,6 +32,7 @@ public class DistributionAddressActivity extends BaseActivity implements Navigat
     private ActivityDistributionAddressBinding binding;
     private DistributionAddressAdapter mAdapter;
     private ArrayList<AddressEntity> addresslists;
+    private String token;
 
 
     @Override
@@ -40,6 +43,7 @@ public class DistributionAddressActivity extends BaseActivity implements Navigat
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
         getAddress();
     }
 
@@ -47,7 +51,7 @@ public class DistributionAddressActivity extends BaseActivity implements Navigat
      * 获取收货地址
      */
     private void getAddress() {
-        new GetAddress(88l).execute(new HttpSubscriber<ArrayList<AddressEntity>>(DistributionAddressActivity.this) {
+        new GetAddress(token).execute(new HttpSubscriber<ArrayList<AddressEntity>>(DistributionAddressActivity.this) {
             @Override
             public void onSuccess(Response<ArrayList<AddressEntity>> response) {
                 initRecycler(response.getData());

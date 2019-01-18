@@ -14,12 +14,12 @@ import com.jinxun.hunting_goods.databinding.ActivityShoppingCarBinding;
 import com.jinxun.hunting_goods.network.HttpSubscriber;
 import com.jinxun.hunting_goods.network.api.shoppingCar.usercase.DeleteShoppingCarCase;
 import com.jinxun.hunting_goods.network.api.shoppingCar.usercase.ShoppingCarListCase;
-import com.jinxun.hunting_goods.network.api.shoppingCar.usercase.ToPay;
 import com.jinxun.hunting_goods.network.bean.Response;
-import com.jinxun.hunting_goods.network.bean.shopping.ConfirmedOrderEntity;
 import com.jinxun.hunting_goods.network.bean.shopping.ShoppingCarInfo;
 import com.jinxun.hunting_goods.network.bean.shopping.createOrder;
 import com.jinxun.hunting_goods.presentation.adapter.ShoppingCarListAdapter;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 
@@ -35,7 +35,7 @@ public class ShoppingCarActivity extends BaseActivity implements NavigationTopBa
 
     private BigDecimal totalPrice;//商品总价格
     private int totalCount;//商品总数量
-
+    private String token;
     private String[] code;
 
     @Override
@@ -46,6 +46,7 @@ public class ShoppingCarActivity extends BaseActivity implements NavigationTopBa
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
         getShoppingCarList();
     }
 
@@ -104,16 +105,42 @@ public class ShoppingCarActivity extends BaseActivity implements NavigationTopBa
     }
 
     private void getShoppingCarList() {
-        new ShoppingCarListCase(88l).execute(new HttpSubscriber<ArrayList<ShoppingCarInfo>>(ShoppingCarActivity.this) {
+        new ShoppingCarListCase(token).execute(new HttpSubscriber<ArrayList<ShoppingCarInfo>>(ShoppingCarActivity.this) {
             @Override
             public void onSuccess(Response<ArrayList<ShoppingCarInfo>> response) {
-                shoppingCarList(response.getData());
-                shoppingCarInfoLists = new ArrayList<>();
-                shoppingCarInfoLists = response.getData();
+                switch (response.getCode()) {
+                    case "200":
+                        shoppingCarList(response.getData());
+                        shoppingCarInfoLists = new ArrayList<>();
+                        shoppingCarInfoLists = response.getData();
+                        break;
+                    case "201":
+                        openActivity(LoginActivity.class);
+                        finish();
+                        break;
+                    case "-1":
+                        openActivity(LoginActivity.class);
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
             }
 
             @Override
             public void onFailure(String errorMsg, Response<ArrayList<ShoppingCarInfo>> response) {
+                switch (response.getCode()) {
+                    case "201":
+                        openActivity(LoginActivity.class);
+                        finish();
+                        break;
+                    case "-1":
+                        openActivity(LoginActivity.class);
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
                 ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
 
             }
@@ -169,7 +196,7 @@ public class ShoppingCarActivity extends BaseActivity implements NavigationTopBa
      * 删除购物车
      */
     private void deleteShoppingCar(String code) {
-        new DeleteShoppingCarCase(code).execute(new HttpSubscriber(ShoppingCarActivity.this) {
+        new DeleteShoppingCarCase(token,code).execute(new HttpSubscriber(ShoppingCarActivity.this) {
             @Override
             public void onSuccess(Response response) {
                 ToastUtil.showShortToast(getApplicationContext(), "删除成功");
@@ -188,7 +215,7 @@ public class ShoppingCarActivity extends BaseActivity implements NavigationTopBa
             switch (view.getId()) {
                 case R.id.pay_btn:
                     if (code == null) {
-                        ToastUtil.showShortToast(ShoppingCarActivity.this,"购物车里空空如也");
+                        ToastUtil.showShortToast(ShoppingCarActivity.this, "购物车里空空如也");
                     } else {
                         Intent intent = new Intent(ShoppingCarActivity.this, ConfirmedOrderActivity.class);
                         createOrder order = new createOrder(88l, code);

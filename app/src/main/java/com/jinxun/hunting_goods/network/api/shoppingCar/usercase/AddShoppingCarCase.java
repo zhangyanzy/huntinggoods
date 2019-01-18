@@ -11,14 +11,14 @@ import rx.Observable;
 
 public class AddShoppingCarCase extends BaseUseCase<ShoppingService> {
 
-    private Long userId;
+    private String token;
 
-    public AddShoppingCarCase(Long userId) {
-        this.userId = userId;
+    public AddShoppingCarCase(String token) {
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().addShoppingCar(userId);
+        return createConnection().addShoppingCar(token);
     }
 }

@@ -12,13 +12,15 @@ import rx.Observable;
 public class DeleteShoppingCarCase extends BaseUseCase<ShoppingService> {
 
     private String uniqueCode;
+    private String token;
 
-    public DeleteShoppingCarCase(String uniqueCode) {
+    public DeleteShoppingCarCase(String uniqueCode, String token) {
         this.uniqueCode = uniqueCode;
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().deleteShoppingCar(uniqueCode);
+        return createConnection().deleteShoppingCar(uniqueCode,token);
     }
 }

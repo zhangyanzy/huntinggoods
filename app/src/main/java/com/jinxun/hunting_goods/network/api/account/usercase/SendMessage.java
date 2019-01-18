@@ -12,15 +12,15 @@ import rx.Observable;
 public class SendMessage extends BaseUseCase<AccountServiceApi> {
 
     private String content;
-    private Long userId;
+    private String token;
 
-    public SendMessage(String content, Long userId) {
+    public SendMessage(String content, String token) {
         this.content = content;
-        this.userId = userId;
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().sendMessage(content,userId);
+        return createConnection().sendMessage(content,token);
     }
 }

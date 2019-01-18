@@ -34,6 +34,7 @@
                 android:layout_below="@+id/main_top_bar"
                 android:visibility="visible" />
 
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/shoe_part_rv"
                 android:layout_width="match_parent"
@@ -41,6 +42,7 @@
                 android:layout_above="@+id/bottom_root"
                 android:layout_below="@+id/main_rv"
                 android:visibility="gone"></android.support.v7.widget.RecyclerView>
+
 
             <RelativeLayout
                 android:id="@+id/bottom_root"
@@ -55,8 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y130"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-                    >
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/add_to_shopping_btn"
@@ -65,11 +66,10 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:onClick="@{presenter.onClick}"
                         android:text="@string/add_to_shopping_car"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/y28"
-                        android:onClick="@{presenter.onClick}"
-                        />
+                        android:textSize="@dimen/y28" />
 
                     <TextView
                         android:id="@+id/to_shopping_pay"
@@ -78,12 +78,11 @@
                         android:layout_weight="1"
                         android:background="@color/black"
                         android:gravity="center"
+                        android:onClick="@{presenter.onClick}"
                         android:text="1330"
                         android:textColor="@color/white"
                         android:textSize="@dimen/x38"
-                        android:textStyle="bold"
-                        android:onClick="@{presenter.onClick}"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -120,8 +119,8 @@
 
             <ImageView
                 android:id="@+id/main_user_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/x134"
+                android:layout_height="@dimen/y134"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/y63"
                 android:onClick="@{presenter.onClick}"
@@ -138,7 +137,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/y14"
-                    android:text="13000000000"
                     android:textColor="@color/black"
                     android:textSize="@dimen/x32"
                     android:textStyle="bold" />

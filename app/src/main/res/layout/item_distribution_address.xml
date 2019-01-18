@@ -29,8 +29,7 @@
             android:layout_toEndOf="@+id/item_set_address"
             android:text="@string/name"
             android:textColor="@color/black"
-            android:textSize="@dimen/x38"
-            android:textStyle="bold" />
+            android:textSize="@dimen/x28" />
 
         <TextView
             android:id="@+id/item_num"
@@ -41,8 +40,7 @@
             android:layout_toEndOf="@+id/item_name"
             android:text="@string/phone"
             android:textColor="@color/black"
-            android:textSize="@dimen/x38"
-            android:textStyle="bold" />
+            android:textSize="@dimen/x28" />
 
         <TextView
             android:id="@+id/item_isDefault"
@@ -59,8 +57,7 @@
             android:text="@string/default_tv"
             android:textColor="@color/white"
             android:textSize="@dimen/x20"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
 
         <TextView

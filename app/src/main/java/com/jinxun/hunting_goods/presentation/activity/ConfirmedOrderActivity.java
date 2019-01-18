@@ -32,6 +32,8 @@ import com.jinxun.hunting_goods.network.bean.shopping.Times;
 import com.jinxun.hunting_goods.network.bean.shopping.createOrder;
 import com.jinxun.hunting_goods.presentation.adapter.ConfirmedOrderAdapter;
 import com.jinxun.hunting_goods.util.CalendarUtil;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 
@@ -57,6 +59,7 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
 
     private createOrder order;
     private AddressEntity entity;
+    private String token;
 
 
     private long timeInMillis;
@@ -97,10 +100,11 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
     @Override
     protected void loadData(Bundle savedInstanceState) {
         order = new createOrder();
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             order = (createOrder) bundle.getSerializable("order");
-            getOrderList(order.getUserId(), order.getCode());
+            getOrderList(token, order.getCode());
         }
         createPicker();
 
@@ -138,10 +142,6 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
                 }
                 String appointmentTime = name + time;
                 binding.appointmentTime.setText(appointmentTime);
-                Log.i(TAG, "getCode: " + code);
-                Log.i(TAG, "getId: " + id);
-                Log.i(TAG, "timeInMillis: " + timeInMillis);
-                Log.i(TAG, "afterTimeInMillis: " + afterTimeMillis);
 
             }
         }).setTitleText("预约时间选择").build();
@@ -164,17 +164,19 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
 
     }
 
-    private void getOrderList(Long userId, String[] code) {
-        new ToPay(userId, code).execute(new HttpSubscriber<ConfirmedOrderEntity>(ConfirmedOrderActivity.this) {
+    private void getOrderList(String token, String[] code) {
+        new ToPay(token, code).execute(new HttpSubscriber<ConfirmedOrderEntity>(ConfirmedOrderActivity.this) {
             @Override
             public void onSuccess(Response<ConfirmedOrderEntity> response) {
                 confirmedOrderEntity = new ConfirmedOrderEntity();
                 confirmedOrderEntity = response.getData();
                 initAdapter(response.getData().getProductList());
                 binding.indentNum.setText(response.getData().getOrderNO());
-                if (response.getData().getAddressEntity() != null) {
-                    AddressEntity data = response.getData().getAddressEntity();
+                if (response.getData().getDefaultAddress() != null) {
+                    AddressEntity data = response.getData().getDefaultAddress();
                     String address = data.getProvince() + data.getCity() + data.getDistrict() + data.getAddress();
+                    binding.userName.setText(data.getName());
+                    binding.userPhone.setText(data.getPhone());
                     binding.pickUpAddress.setText(address);
                 } else {
                     binding.pickUpAddress.setText("请选择地址");
@@ -189,7 +191,7 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
     }
 
     private void getAlipayCode() {
-        new PayCase(88l).execute(new HttpSubscriber<String>(ConfirmedOrderActivity.this) {
+        new PayCase(token).execute(new HttpSubscriber<String>(ConfirmedOrderActivity.this) {
             @Override
             public void onSuccess(Response<String> response) {
                 final String code = response.getData();
@@ -231,14 +233,14 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
         days.add(afterDay);
 
 
-        Times times = new Times("两小时内", 0);
-        Times times10 = new Times("10点-11点", 10);
-        Times times11 = new Times("11点-12点", 11);
-        Times times12 = new Times("12点-13点", 12);
-        Times times13 = new Times("13点-14点", 13);
-        Times times14 = new Times("14点-15点", 14);
-        Times times15 = new Times("15点-16点", 15);
-        Times times16 = new Times("16点-17点", 16);
+        Times times = new Times("9:00-10:00", 9);
+        Times times10 = new Times("10:00-11:00", 10);
+        Times times11 = new Times("11:00-12:00", 11);
+        Times times12 = new Times("12:00-13:00", 12);
+        Times times13 = new Times("13:00-14:00", 13);
+        Times times14 = new Times("14:00-15:00", 14);
+        Times times15 = new Times("15:00-16:00", 15);
+        Times times16 = new Times("16:00-17:00", 16);
 
         ArrayList<Times> todayLists = new ArrayList<>();
         todayLists.add(times);
@@ -271,31 +273,6 @@ public class ConfirmedOrderActivity extends BaseActivity implements NavigationTo
     }
 
     private void pay() {
-//        if (binding.pickUpAddress.getText().toString().contains("请选择地址")) {
-//            ToastUtil.showShortToast(getApplicationContext(), "请选择收货地址");
-//            return;
-//        } else if (binding.appointmentTime.getText().toString().contains("预约取件时间（两小时内）")) {
-//            ToastUtil.showShortToast(getApplicationContext(), "请选择预约取件时间");
-//            return;
-//        }
-//
-//        new PayOrderCase(88l, confirmedOrderEntity.getOrderNO(), receiveAddId, deliveryAddId, timeInMillis, afterTimeMillis)
-//                .execute(new HttpSubscriber<PayOrderEntity>(ConfirmedOrderActivity.this) {
-//                    @Override
-//                    public void onSuccess(Response<PayOrderEntity> response) {
-//                        Intent intent = new Intent(ConfirmedOrderActivity.this, PaySuccessActivity.class);
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable("PayOrderEntity", response.getData());
-//                        intent.putExtras(bundle);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(String errorMsg, Response<PayOrderEntity> response) {
-//                        ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
-//                    }
-//                });
         getAlipayCode();
     }
 

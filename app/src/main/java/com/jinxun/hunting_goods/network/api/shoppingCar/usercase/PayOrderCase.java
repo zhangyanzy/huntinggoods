@@ -11,15 +11,15 @@ import rx.Observable;
 
 public class PayOrderCase extends BaseUseCase<ShoppingService> {
 
-    private Long userId;
+    private String token;
     private String orderNo;
     private Long receiveAddId;
     private Long deliveryAddId;
     private Long receiveStartTime;
     private Long receiveEndTime;
 
-    public PayOrderCase(Long userId, String orderNo, Long receiveAddId, Long deliveryAddId, Long receiveStartTime, Long receiveEndTime) {
-        this.userId = userId;
+    public PayOrderCase(String token, String orderNo, Long receiveAddId, Long deliveryAddId, Long receiveStartTime, Long receiveEndTime) {
+        this.token = token;
         this.orderNo = orderNo;
         this.receiveAddId = receiveAddId;
         this.deliveryAddId = deliveryAddId;
@@ -30,6 +30,6 @@ public class PayOrderCase extends BaseUseCase<ShoppingService> {
 
     @Override
     protected Observable buildCase() {
-        return createConnection().payOrder(userId, orderNo, receiveAddId, deliveryAddId, receiveStartTime, receiveEndTime);
+        return createConnection().payOrder(token, orderNo, receiveAddId, deliveryAddId, receiveStartTime, receiveEndTime);
     }
 }

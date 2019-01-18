@@ -17,6 +17,8 @@ import com.jinxun.hunting_goods.network.bean.Response;
 import com.jinxun.hunting_goods.network.bean.order.OrderListEntity;
 import com.jinxun.hunting_goods.presentation.adapter.TabPageAdapter;
 import com.jinxun.hunting_goods.presentation.fragment.OrderInfoFragment;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 
@@ -33,6 +35,8 @@ public class MyOrderActivity extends BaseActivity {
     private List<String> mTitle = new ArrayList<>();
     private ArrayList<OrderListEntity> data;
 
+    private String token;
+
     @Override
     protected void initComponent() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_order);
@@ -41,11 +45,13 @@ public class MyOrderActivity extends BaseActivity {
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
-        getOrderList(88l, 100l);
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
+        if (token != null)
+            getOrderList(token, 100l);
     }
 
-    private void getOrderList(Long userId, Long orderStatus) {
-        new OrderListCase(userId, orderStatus).execute(new HttpSubscriber<ArrayList<OrderListEntity>>(MyOrderActivity.this) {
+    private void getOrderList(String token, Long orderStatus) {
+        new OrderListCase(token, orderStatus).execute(new HttpSubscriber<ArrayList<OrderListEntity>>(MyOrderActivity.this) {
             @Override
             public void onSuccess(Response<ArrayList<OrderListEntity>> response) {
                 Log.i(TAG, "onSuccess: " + response.getData());
@@ -79,7 +85,7 @@ public class MyOrderActivity extends BaseActivity {
                 binding.myOrderTabLayout.addTab(binding.myOrderTabLayout.newTab().setText(mTitle.get(i)));
                 fragmentList.add(OrderInfoFragment.newInstance(mTabAdapter.getItem(i).getId()));
             }
-        binding.myOrderTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        binding.myOrderTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         binding.myOrderTabLayout.getTabAt(0);
         binding.myOrderViewPager.setAdapter(mTabAdapter);
         binding.myOrderTabLayout.setupWithViewPager(binding.myOrderViewPager);

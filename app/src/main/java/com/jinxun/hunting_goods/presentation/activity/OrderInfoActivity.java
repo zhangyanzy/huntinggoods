@@ -12,6 +12,7 @@ import com.jinxun.hunting_goods.R;
 import com.jinxun.hunting_goods.base.BaseActivity;
 import com.jinxun.hunting_goods.databinding.ActivityOrderInfoBinding;
 import com.jinxun.hunting_goods.network.HttpSubscriber;
+import com.jinxun.hunting_goods.network.api.order.usercase.CancelOrderCase;
 import com.jinxun.hunting_goods.network.api.order.usercase.OrderDetailCase;
 import com.jinxun.hunting_goods.network.bean.Response;
 import com.jinxun.hunting_goods.network.bean.address.AddressEntity;
@@ -19,6 +20,8 @@ import com.jinxun.hunting_goods.network.bean.order.OrderInfoEntity;
 import com.jinxun.hunting_goods.network.bean.shopping.Day;
 import com.jinxun.hunting_goods.network.bean.shopping.Times;
 import com.jinxun.hunting_goods.util.CalendarUtil;
+import com.jinxun.hunting_goods.util.Constants;
+import com.jinxun.hunting_goods.util.SpUtils;
 import com.jinxun.hunting_goods.util.ToastUtil;
 import com.jinxun.hunting_goods.weight.NavigationTopBar;
 
@@ -42,14 +45,19 @@ public class OrderInfoActivity extends BaseActivity {
     private AddressEntity entity;
     private OrderInfoEntity orderInfoEntity;
 
+    private String token;
+
     private Long receiveAddId;//收货地址id
     private Long deliveryAddId;//取货地址
+
 
     private long timeInMillis;
     private long afterTimeMillis;
 
     private ArrayList<Day> days = new ArrayList<>();
     private ArrayList<ArrayList<Times>> timesLists = new ArrayList<>();
+
+    private int replaceStatus = 0;
 
 
     @Override
@@ -60,6 +68,7 @@ public class OrderInfoActivity extends BaseActivity {
 
     @Override
     protected void loadData(Bundle savedInstanceState) {
+        token = (String) SpUtils.init(Constants.SPREF.TOKEN).get(Constants.SPREF.TOKEN, "");
         Intent intent = getIntent();
         String orderNO = intent.getStringExtra("orderNO");//订单号
         if (orderNO == null)
@@ -68,7 +77,7 @@ public class OrderInfoActivity extends BaseActivity {
     }
 
     private void getOrderDetail(String orderNO) {
-        new OrderDetailCase(orderNO).execute(new HttpSubscriber<OrderInfoEntity>(OrderInfoActivity.this) {
+        new OrderDetailCase(orderNO, token).execute(new HttpSubscriber<OrderInfoEntity>(OrderInfoActivity.this) {
             @Override
             public void onSuccess(Response<OrderInfoEntity> response) {
                 createView(response.getData());
@@ -148,6 +157,12 @@ public class OrderInfoActivity extends BaseActivity {
             binding.cancelOrderBtn.setVisibility(View.GONE);
         } else if (data.getOrderStatus() == 6) {
             binding.orderInfoStates.setText("售后");
+        } else if (data.getOrderStatus() == 7) {
+            binding.orderInfoStates.setText("已取消");
+            binding.orderInfoStatesIcon.setImageResource(R.mipmap.is_complete);
+            binding.continuePayBtn.setVisibility(View.GONE);
+            binding.cancelOrderBtn.setVisibility(View.GONE);
+
         }
 
 
@@ -211,13 +226,13 @@ public class OrderInfoActivity extends BaseActivity {
 
 
         Times times = new Times("两小时内", 0);
-        Times times10 = new Times("10点-11点", 10);
-        Times times11 = new Times("11点-12点", 11);
-        Times times12 = new Times("12点-13点", 12);
-        Times times13 = new Times("13点-14点", 13);
-        Times times14 = new Times("14点-15点", 14);
-        Times times15 = new Times("15点-16点", 15);
-        Times times16 = new Times("16点-17点", 16);
+        Times times10 = new Times("10:00点-11:00点", 10);
+        Times times11 = new Times("11:00点-12:00点", 11);
+        Times times12 = new Times("12:00点-13:00点", 12);
+        Times times13 = new Times("13:00点-14:00点", 13);
+        Times times14 = new Times("14:00点-15:00点", 14);
+        Times times15 = new Times("15:00点-16:00点", 15);
+        Times times16 = new Times("16:00点-17:00点", 16);
 
         ArrayList<Times> todayLists = new ArrayList<>();
         todayLists.add(times);
@@ -257,8 +272,8 @@ public class OrderInfoActivity extends BaseActivity {
                 if (data.getSerializableExtra("addressReturn") != null)
                     entity = (AddressEntity) data.getSerializableExtra("addressReturn");
                 if (null != entity) {
-                    String address = entity.getProvince() + entity.getCity() + entity.getDistrict() + entity.getAddress();
-                    binding.pickUpAddress.setText(address);
+                    String pickUpAddress = entity.getProvince() + entity.getCity() + entity.getDistrict() + entity.getAddress();
+                    binding.pickUpAddress.setText(pickUpAddress);
                     receiveAddId = entity.getId();
                 }
                 break;
@@ -266,8 +281,8 @@ public class OrderInfoActivity extends BaseActivity {
                 if (data.getSerializableExtra("addressReturn") != null)
                     entity = (AddressEntity) data.getSerializableExtra("addressReturn");
                 if (entity != null) {
-                    String address = entity.getProvince() + entity.getCity() + entity.getDistrict() + entity.getAddress();
-                    binding.deliveryAddressInfo.setText(address);
+                    String deliveryAddress = entity.getProvince() + entity.getCity() + entity.getDistrict() + entity.getAddress();
+                    binding.deliveryAddressInfo.setText(deliveryAddress);
                     deliveryAddId = entity.getId();
                 }
                 break;
@@ -279,6 +294,9 @@ public class OrderInfoActivity extends BaseActivity {
     private void bottomClick() {
         if (orderInfoEntity.getOrderStatus() == 4) {
             ToastUtil.showShortToast(getApplicationContext(), "查看物流");
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            startActivity(intent);
+            finish();
         } else if (orderInfoEntity.getOrderStatus() == 5) {
             ToastUtil.showShortToast(getApplicationContext(), "申请售后");
             Intent intent = new Intent(getApplicationContext(), ApplyAfterActivity.class);
@@ -287,10 +305,27 @@ public class OrderInfoActivity extends BaseActivity {
                 bundle.putSerializable("orderInfoEntity", orderInfoEntity);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
 
         }
     }
+
+    private void cancelOrder() {
+        new CancelOrderCase(token, orderInfoEntity.getOrderNO()).execute(new HttpSubscriber() {
+            @Override
+            public void onSuccess(Response response) {
+                ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
+                finish();
+            }
+
+            @Override
+            public void onFailure(String errorMsg, Response response) {
+                ToastUtil.showShortToast(getApplicationContext(), response.getMessage());
+            }
+        });
+    }
+
 
     public class Presenter {
         public void onClick(View view) {
@@ -311,20 +346,24 @@ public class OrderInfoActivity extends BaseActivity {
                     bottomClick();
                     break;
                 case R.id.cancel_order_btn:
-                    if (orderInfoEntity.getOrderStatus() != 1) {
-                        binding.cancelOrderBtn.setEnabled(false);
-                    } else {
-                        binding.cancelOrderBtn.setEnabled(true);
-                        ToastUtil.showShortToast(getApplicationContext(), "取消订单");
-                    }
+                    if (orderInfoEntity.getOrderStatus() == 1 || orderInfoEntity.getOrderStatus() == 0)
+                        cancelOrder();
                     break;
                 case R.id.continue_pay_btn:
-                    if (orderInfoEntity.getOrderStatus() != 1) {
-                        binding.continuePayBtn.setEnabled(false);
-                    } else {
-                        binding.continuePayBtn.setEnabled(true);
+                    if (orderInfoEntity.getOrderStatus() == 1 || orderInfoEntity.getOrderStatus() == 0)
                         ToastUtil.showShortToast(getApplicationContext(), "继续付款");
+                    break;
+                case R.id.substitute_btn:
+                    if (replaceStatus == 0) {
+                        replaceStatus = 1;
+                        binding.pickUpAddress.setText(deliveryAdd);
+                        binding.deliveryAddressInfo.setText(receiveAdd);
+                    } else if (replaceStatus == 1) {
+                        replaceStatus = 0;
+                        binding.pickUpAddress.setText(receiveAdd);
+                        binding.deliveryAddressInfo.setText(deliveryAdd);
                     }
+
                     break;
                 default:
                     break;

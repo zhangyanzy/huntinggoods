@@ -86,7 +86,7 @@ public class StorageMgr {
         String k = "";
         if (level.equals(StorageMgr.LEVEL_USER)) {
             if (!IsEmpty.object(user)) {
-                k += user.getId();
+                k += user.getUserId();
             } else {
                 throw new NullPointerException("用户为空");
             }
@@ -156,7 +156,7 @@ public class StorageMgr {
         String k = "";
         if (level.equals(StorageMgr.LEVEL_USER)) {
             if (!IsEmpty.object(user)) {
-                k += user.getId();
+                k += user.getUserId();
             }
             k += "_";
         }

@@ -16,6 +16,7 @@ public class AppConfig {
     }
 
     public static class PartyKey {
+        public static final String UMENT_KEY = "5c0e1081f1f556a27100009f";
 
     }
 }

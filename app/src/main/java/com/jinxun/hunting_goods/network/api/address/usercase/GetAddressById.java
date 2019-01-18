@@ -12,13 +12,16 @@ import rx.Observable;
 public class GetAddressById extends BaseUseCase<AddressServiceApi> {
 
     private String id;//数据主键
+    private String token;//
 
-    public GetAddressById(String id) {
+    public GetAddressById(String id, String token) {
         this.id = id;
+        this.token = token;
     }
+
 
     @Override
     protected Observable buildCase() {
-        return createConnection().getAddressById(id);
+        return createConnection().getAddressById(id, token);
     }
 }

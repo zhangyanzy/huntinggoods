@@ -2,6 +2,7 @@ package com.jinxun.hunting_goods.presentation.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jinxun.hunting_goods.R;
@@ -15,6 +16,7 @@ public class MainHolder extends ClickableViewHolder {
 
     public TextView mName;
     public RecyclerView mItemRv;
+    public ImageView mComplete;
 
     public MainHolder(View itemView) {
         super(itemView);
@@ -22,6 +24,7 @@ public class MainHolder extends ClickableViewHolder {
             return;
         mName = $(R.id.root_item_shoe_name);
         mItemRv = $(R.id.item_rv);
+        mComplete = $(R.id.root_item_copy_reader);
     }
 }
 

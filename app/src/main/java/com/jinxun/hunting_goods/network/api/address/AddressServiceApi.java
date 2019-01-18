@@ -43,19 +43,19 @@ public interface AddressServiceApi {
      * 获取收货地址list
      */
     @GET("user/getAddress")
-    Observable<Response<ArrayList<AddressEntity>>> getAddress(@Query("userId") Long userId);
+    Observable<Response<ArrayList<AddressEntity>>> getAddress(@Query("token") String token);
 
     /**
      * 获取单条地址
      */
     @GET("user/getAddressById")
-    Observable<Response<AddressEntity>> getAddressById(@Query("id") String id);
+    Observable<Response<AddressEntity>> getAddressById(@Query("id") String id,@Query("token") String token);
 
     /**
      * 新增用户地址
      */
     @POST("user/insertAddress")
-    Observable<Response> postAddress(@Query("userId") Long userId, @Query("name") String name, @Query("phone") String phone,
+    Observable<Response> postAddress(@Query("token") String token, @Query("name") String name, @Query("phone") String phone,
                                      @Query("province") String province, @Query("provinceCode") String provinceCode, @Query("city") String city,
                                      @Query("cityCode") String cityCode,@Query("district") String district,@Query("districtCode") String districtCode,
                                      @Query("address") String address,@Query("isDefault") Integer isDefault);
@@ -64,13 +64,13 @@ public interface AddressServiceApi {
      * 删除用户地址
      */
     @DELETE("user/delAddress")
-    Observable<Response> deleteAddress(@Query("id") String id);
+    Observable<Response> deleteAddress(@Query("id") String id,@Query("token") String token);
 
     /**
      * 修改用户地址
      */
     @PUT("user/updateAddress")
-    Observable<Response> upDateAddress(@Query("id") Long id,@Query("userId") Long userId, @Query("name") String name, @Query("phone") String phone,
+    Observable<Response> upDateAddress(@Query("id") Long id,@Query("token") String token, @Query("name") String name, @Query("phone") String phone,
                                        @Query("province") String province, @Query("provinceCode") String provinceCode, @Query("city") String city,
                                        @Query("cityCode") String cityCode,@Query("district") String district,@Query("districtCode") String districtCode,
                                        @Query("address") String address,@Query("isDefault") Integer isDefault);

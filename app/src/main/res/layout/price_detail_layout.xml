@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y63"
+            android:text="价目明细"
+            android:textColor="@color/black"
+            android:textSize="@dimen/x32" />
+
+        <ImageView
+            android:id="@+id/price_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginTop="@dimen/y63"
+            android:src="@mipmap/close_icon" />
+
+        <TextView
+            android:id="@+id/price_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price_close"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y40"
+            android:text="上裂物，重新定义球鞋"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price_message"
+            android:layout_marginEnd="@dimen/x44"
+            android:layout_marginStart="@dimen/x44"
+            android:layout_marginTop="@dimen/y20"
+            android:text="裂物APP是一款专门针对用户手上的球鞋高端定制和改造平台，新注册用户可以享受定制来回包邮的福利
+平台订单可以在一个月内免费进行一次售后服务，用户完成订单提交以后自动生成加工的加工费和加工时长，不同部位，不同工艺都会有不同价格和生产周期，系统会自动匹配生成。
+"
+            android:textColor="@color/black"
+
+            />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.jinxun.hunting_goods.presentation.activity.ModificationActivity.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jinxun.hunting_goods.presentation.activity.ModificationActivity">
+
+        <com.jinxun.hunting_goods.weight.NavigationTopBar
+            android:id="@+id/verification_code_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96"></com.jinxun.hunting_goods.weight.NavigationTopBar>
+
+
+
+        <LinearLayout
+            android:id="@+id/login_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/verification_code_top_bar"
+            android:layout_marginStart="@dimen/x50"
+            android:layout_marginTop="@dimen/y96"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/modification_tel"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x56"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x40"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send_verification_code_to"
+                    android:textColor="@color/silver" />
+
+                <TextView
+                    android:id="@+id/phone_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/silver" />
+            </LinearLayout>
+
+            <com.jinxun.hunting_goods.weight.EditSmsCodeLayout
+                android:id="@+id/edit_sms_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_title"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/y80"
+                app:item_size="@dimen/x80"
+                app:max_len="6"
+                app:text_color="@color/black"
+                app:text_size="@dimen/x32"></com.jinxun.hunting_goods.weight.EditSmsCodeLayout>
+
+
+            <TextView
+                android:id="@+id/again_get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/x100"
+                android:layout_marginTop="@dimen/y36"
+                android:onClick="@{presenter.onClick}"
+                android:text="@string/again_get"
+                android:textColor="@color/BLUE_00AACC" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

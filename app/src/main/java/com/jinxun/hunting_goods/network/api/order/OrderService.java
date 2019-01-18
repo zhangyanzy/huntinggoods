@@ -7,6 +7,7 @@ import com.jinxun.hunting_goods.network.bean.order.OrderListEntity;
 import java.util.ArrayList;
 
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -20,13 +21,20 @@ public interface OrderService {
      * 订单详情
      */
     @GET("order/detail")
-    Observable<Response<OrderInfoEntity>> orderDetail(@Query("orderNO") String orderNO);
+    Observable<Response<OrderInfoEntity>> orderDetail(@Query("token") String token, @Query("orderNO") String orderNO);
 
 
     /**
      * 订单列表
      */
     @GET("order/list")
-    Observable<Response<ArrayList<OrderListEntity>>> orderListEntity(@Query("userId") Long userId, @Query("orderStatus") Long orderStatus);
+    Observable<Response<ArrayList<OrderListEntity>>> orderListEntity(@Query("token") String token, @Query("orderStatus") Long orderStatus);
+
+
+    /**
+     * 取消订单
+     */
+    @POST("order/cancelOrder")
+    Observable<Response> cancelOrder(@Query("token") String token, @Query("orderNO") String orderNO);
 
 }

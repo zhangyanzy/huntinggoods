@@ -11,14 +11,14 @@ import rx.Observable;
 
 public class PayCase extends BaseUseCase<ShoppingService> {
 
-    private Long userId;
+    private String token;
 
-    public PayCase(Long userId) {
-        this.userId = userId;
+    public PayCase(String token) {
+        this.token = token;
     }
 
     @Override
     protected Observable buildCase() {
-        return createConnection().getAlipayCode(userId);
+        return createConnection().getAlipayCode(token);
     }
 }

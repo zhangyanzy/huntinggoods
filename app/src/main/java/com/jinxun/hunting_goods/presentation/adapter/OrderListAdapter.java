@@ -33,7 +33,7 @@ public class OrderListAdapter extends BaseRecyclerViewAdapter<OrderListEntity, O
 
     private OnItemListener listener;
 
-    public void setOnItemClickListener(OnItemListener listener){
+    public void setOnItemClickListener(OnItemListener listener) {
         this.listener = listener;
     }
 
@@ -81,7 +81,7 @@ public class OrderListAdapter extends BaseRecyclerViewAdapter<OrderListEntity, O
             helper.item_indent_info.setText(orderListEntity.getProduct().get(i).getDescribe());
             helper.item_order_money.setText(orderListEntity.getProduct().get(i).getCost() + "");
         }
-        if (orderListEntity.getOrderStatus() == 0 && orderListEntity.getOrderStatus() == 1) {
+        if (orderListEntity.getOrderStatus() == 0) {
             helper.item_order_state.setText("待付款");
         } else if (orderListEntity.getOrderStatus() == 2) {
             helper.item_order_state.setText("待取件");
@@ -93,6 +93,10 @@ public class OrderListAdapter extends BaseRecyclerViewAdapter<OrderListEntity, O
             helper.item_order_state.setText("已完成");
         } else if (orderListEntity.getOrderStatus() == 6) {
             helper.item_order_state.setText("售后");
+        } else if (orderListEntity.getOrderStatus() == 1) {
+            helper.item_order_state.setText("待付款");
+        } else if (orderListEntity.getOrderStatus() == 7) {
+            helper.item_order_state.setText("已取消");
         }
         helper.item_indent_info_root.setOnClickListener(new View.OnClickListener() {
             @Override
